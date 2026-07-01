@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>张建东 — 前端开发</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    body { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+    ::selection { background: #000; color: #fff; }
+  </style>
+</head>
+<body class="bg-white text-black antialiased">
+
+  <!-- Nav -->
+  <nav class="fixed top-0 w-full bg-white/90 backdrop-blur border-b border-gray-100 z-50">
+    <div class="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
+      <span class="font-semibold text-sm tracking-tight">张建东</span>
+      <div class="flex gap-6 text-sm text-gray-500">
+        <a href="#about" class="hover:text-black transition-colors">关于</a>
+        <a href="#projects" class="hover:text-black transition-colors">项目</a>
+        <a href="#contact" class="hover:text-black transition-colors">联系</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="max-w-3xl mx-auto px-6 pt-32 pb-20">
+    <h1 class="text-5xl font-bold tracking-tight leading-tight">
+      你好，我是<span class="text-gray-300">张建东</span>
+    </h1>
+    <p class="mt-6 text-xl text-gray-500 leading-relaxed max-w-xl">
+      一个正在学习前端开发的人。我把学到的每个项目都做出来，放在这里。
+      这是我的简历，也是我的成长记录。
+    </p>
+    <div class="mt-8 flex gap-3">
+      <a href="#projects" class="inline-block bg-black text-white px-6 py-3 text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors">
+        看我的项目 →
+      </a>
+      <a href="#contact" class="inline-block border border-gray-200 px-6 py-3 text-sm font-medium rounded-lg hover:border-black transition-colors">
+        联系我
+      </a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="max-w-3xl mx-auto px-6 py-20 border-t border-gray-100">
+    <h2 class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-6">关于我</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div class="text-gray-600 leading-relaxed">
+        <p>
+          我从零开始自学前端开发。不满足于"看教程"，每个知识点都动手做项目验证。
+          这个网站本身就是我的第一个作品——它不复杂，但每一行代码都是我写的。
+        </p>
+        <p class="mt-4">
+          我相信"做出来"比"学完了"重要一百倍。下面是我做过的项目，每一个都托管在 GitHub 上，代码完全开源。
+        </p>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold mb-3">技能</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1.5 bg-gray-100 text-gray-600 text-xs rounded-full">HTML</span>
+          <span class="px-3 py-1.5 bg-gray-100 text-gray-600 text-xs rounded-full">CSS</span>
+          <span class="px-3 py-1.5 bg-gray-100 text-gray-600 text-xs rounded-full">Tailwind CSS</span>
+          <span class="px-3 py-1.5 bg-gray-100 text-gray-600 text-xs rounded-full">JavaScript</span>
+          <span class="px-3 py-1.5 bg-gray-100 text-gray-600 text-xs rounded-full">Git</span>
+          <span class="px-3 py-1.5 bg-gray-100 text-gray-600 text-xs rounded-full">GitHub</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="max-w-3xl mx-auto px-6 py-20 border-t border-gray-100">
+    <h2 class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-8">项目</h2>
+    <div class="space-y-12">
+      <!-- Project 1 -->
+      <div class="group">
+        <div class="flex items-start justify-between">
+          <div>
+            <h3 class="text-lg font-semibold group-hover:text-gray-500 transition-colors">
+              个人简历网站
+            </h3>
+            <p class="mt-2 text-gray-500 text-sm leading-relaxed max-w-lg">
+              你现在正在看的这个网站。纯 HTML + Tailwind CSS CDN，零构建工具，部署在 GitHub Pages 上。
+              黑白极简风格，响应式布局，加载速度 < 1 秒。
+            </p>
+            <div class="mt-3 flex gap-4 text-xs text-gray-400">
+              <span>HTML</span>
+              <span>Tailwind CSS</span>
+              <span>GitHub Pages</span>
+            </div>
+          </div>
+          <a href="https://github.com/harryzhanggdsz-maker/resume-website" class="text-xs text-gray-300 hover:text-black transition-colors whitespace-nowrap mt-1">源码 →</a>
+        </div>
+      </div>
+
+      <!-- 更多项目会加在这里 -->
+      <div class="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center text-gray-400">
+        <p class="text-sm">下一个项目会出现在这里</p>
+        <p class="text-xs mt-1 text-gray-300">正在建设中...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="max-w-3xl mx-auto px-6 py-20 border-t border-gray-100">
+    <h2 class="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-6">联系</h2>
+    <p class="text-gray-500 text-sm leading-relaxed max-w-md">
+      欢迎交流，不管是一起学习、合作项目，还是给我建议。
+    </p>
+    <div class="mt-6 flex gap-6 text-sm">
+      <a href="mailto:413805986@qq.com" class="text-gray-500 hover:text-black transition-colors underline underline-offset-4">
+        413805986@qq.com
+      </a>
+      <a href="https://github.com/harryzhanggdsz-maker" class="text-gray-500 hover:text-black transition-colors underline underline-offset-4">
+        GitHub
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="max-w-3xl mx-auto px-6 py-8 border-t border-gray-100 text-xs text-gray-300">
+    © 2026 张建东. 自己一行行写的，不是模板。
+  </footer>
+
+</body>
+</html>
