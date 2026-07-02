@@ -165,7 +165,7 @@
 
       try {
         // 第一步：用 IP 获取访问者的城市
-        const ipRes = await fetch('https://ipapi.co/json/');
+        const ipRes = await fetch('https://geolocation-db.com/json/');
         if (!ipRes.ok) throw new Error('ip');
         const ipData = await ipRes.json();
         const city = ipData.city || 'Beijing';
