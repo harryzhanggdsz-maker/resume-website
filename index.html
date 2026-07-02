@@ -34,7 +34,13 @@
       一个正在学习前端开发的人。我把学到的每个项目都做出来，放在这里。
       这是我的简历，也是我的成长记录。
     </p>
-    <div class="mt-8 flex gap-3">
+    <!-- Weather Widget -->
+    <div id="weatherWidget" class="mt-8 inline-flex items-center gap-3 px-4 py-3 border border-gray-100 rounded-xl bg-gray-50/50">
+      <div class="w-5 h-5 rounded-full bg-gray-200 animate-pulse" id="weatherSpinner"></div>
+      <span class="text-sm text-gray-400" id="weatherText">检测你的城市天气...</span>
+    </div>
+
+    <div class="mt-6 flex gap-3">
       <a href="#projects" class="inline-block bg-black text-white px-6 py-3 text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors">
         看我的项目 →
       </a>
@@ -64,6 +70,7 @@
           <span class="px-3 py-1.5 bg-gray-100 text-gray-600 text-xs rounded-full">CSS</span>
           <span class="px-3 py-1.5 bg-gray-100 text-gray-600 text-xs rounded-full">Tailwind CSS</span>
           <span class="px-3 py-1.5 bg-gray-100 text-gray-600 text-xs rounded-full">JavaScript</span>
+          <span class="px-3 py-1.5 bg-gray-100 text-gray-600 text-xs rounded-full">API 集成</span>
           <span class="px-3 py-1.5 bg-gray-100 text-gray-600 text-xs rounded-full">Git</span>
           <span class="px-3 py-1.5 bg-gray-100 text-gray-600 text-xs rounded-full">GitHub</span>
         </div>
@@ -84,7 +91,7 @@
             </h3>
             <p class="mt-2 text-gray-500 text-sm leading-relaxed max-w-lg">
               你现在正在看的这个网站。纯 HTML + Tailwind CSS CDN，零构建工具，部署在 GitHub Pages 上。
-              黑白极简风格，响应式布局，加载速度 < 1 秒。
+              集成了 IP 定位 + 实时天气卡片——页面加载时自动识别你的城市并显示当地天气。
             </p>
             <div class="mt-3 flex gap-4 text-xs text-gray-400">
               <span>HTML</span>
@@ -146,6 +153,54 @@
   <footer class="max-w-3xl mx-auto px-6 py-8 border-t border-gray-100 text-xs text-gray-300">
     © 2026 张建东. 自己一行行写的，不是模板。
   </footer>
+
+  <script>
+    // IP 定位 + 天气查询
+    const WEATHER_KEY = '1b6c3b4209ec4e8cbee83749260207';
+
+    async function fetchWeather() {
+      const widget = document.getElementById('weatherWidget');
+      const text = document.getElementById('weatherText');
+      const spinner = document.getElementById('weatherSpinner');
+
+      try {
+        // 第一步：用 IP 获取访问者的城市
+        const ipRes = await fetch('https://ipapi.co/json/');
+        if (!ipRes.ok) throw new Error('ip');
+        const ipData = await ipRes.json();
+        const city = ipData.city || 'Beijing';
+
+        // 第二步：用城市名查天气
+        const weatherRes = await fetch(
+          `https://api.weatherapi.com/v1/current.json?key=${WEATHER_KEY}&q=${encodeURIComponent(city)}&lang=zh`
+        );
+        if (!weatherRes.ok) throw new Error('weather');
+        const weather = await weatherRes.json();
+
+        // 第三步：渲染
+        const emoji = getEmoji(weather.current.condition.code);
+        const temp = Math.round(weather.current.temp_c);
+        spinner.outerHTML = `<span class="text-lg">${emoji}</span>`;
+        text.textContent = `${weather.location.name} ${weather.current.condition.text} ${temp}°C`;
+        widget.classList.remove('bg-gray-50/50');
+        widget.classList.add('bg-white');
+      } catch (e) {
+        spinner.outerHTML = '<span class="text-lg">🌍</span>';
+        text.textContent = '你好，很高兴你来访问';
+      }
+    }
+
+    function getEmoji(code) {
+      if (code === 1000) return '☀️';
+      if (code === 1003) return '🌤️';
+      if (code >= 1006 && code <= 1030) return '☁️';
+      if (code >= 1063 && code <= 1201) return '🌧️';
+      if (code >= 1204 && code <= 1237) return '🌨️';
+      return '🌍';
+    }
+
+    fetchWeather();
+  </script>
 
 </body>
 </html>
